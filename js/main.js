@@ -184,24 +184,26 @@ while (productoElegido != "no") {
         alert:("No tenemos ese producto");
         break;
     }
-    let unidades = prompt("Cuántas unidades quieres?");
   
-
-    
+    let unidades = parseInt(prompt("Cuántas unidades quieres?"));
       if (producto == producto) {
         let calculo = precio * unidades;
         console.log(calculo);
       } else if (producto != producto) {
         calculo = precio + precio;
+        console.log(calculo);
         
       } else {
-        console.log(calculo);
+        alert("No tenemos ese producto");
       }
-  }
-}
   productoElegido = prompt("Quieres seguir comprando?");
-
+    
+  
   while (productoElegido === "no") {
     alert("gracias por su compra!! Hasta pronto");
-    break;
+   break;
   }
+  
+      }
+    
+    }
