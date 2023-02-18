@@ -197,10 +197,8 @@ main{
   }
     
   /*PRODUCTOS.HTML*/
-  /*MAIN*//*
-  #body{
-    display: none;
-  }*/
+  /*MAIN*/
+
   .card-img-top{
    height: 200px!important;
    width: 100%!important;
