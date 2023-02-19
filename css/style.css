@@ -443,7 +443,7 @@ textarea {
     
 }
   @media (min-width:425px){
-    
+   /*INICIO*/ 
     .logo{
     font-family:'EB Garamond', serif;
     font-size: 1.6rem !important;
@@ -460,7 +460,6 @@ textarea {
 .m-2{
   width: 65vw;
 }
-/*PRODUCTOS*/
     /*MAIN*/
     .carousel-inner{
       top: 20px;
@@ -480,6 +479,7 @@ textarea {
   
   }
   @media (min-width: 576px){
+    /*INICIO*/
     h1{
       font-size: 1rem!important;
     }
