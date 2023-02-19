@@ -46,150 +46,140 @@ let precioOferta = resta(
   descuento
 );
 
-alert(
-  "Precio de Oferta Kit x 3 con gasto de envío incluido es : " +
-    " " +
-    precioOferta
-);
+alert('Precio de Oferta Kit x 3 con gasto de envío incluido es :' + '' +  precioOferta);
 
 //El usuario elige producto y se informa precio final
-let productoElegido = prompt("Hola, desea comprar algún producto: si o no")
-// "Que producto desea comprar? 1) Rodillo 2) Esterilla 3) Mat 4) Bloque 5) AlmohadaLumbar 6) KitRelax 7) MediasAntideslizantes 8) BolsaYoga 9) Almohadon 10) Oferta"
+let productoElegido = prompt('Hola, desea comprar algún producto: si o no');
 
-while (productoElegido != "si" && productoElegido != "no") {
-  alert("por favor ingrese si o no")
-  productoElegido = prompt("Hola, desea comprar algún producto: si o no")
-  // "Que producto desea comprar? 1) Rodillo 2) Esterilla 3) Mat 4) Bloque 5) AlmohadaLumbar 6) KitRelax 7) MediasAntideslizantes 8) BolsaYoga 9) Almohadon 10) Oferta")
+while (productoElegido != 'si' && productoElegido != 'no') {
+  alert("por favor ingrese si o no");
+  productoElegido = prompt('Hola, desea comprar algún producto: si o no');
 }
-if (productoElegido == "si") {
+if (productoElegido == 'si') {
   productoElegido = prompt(
-    "a continuación nuestra lista de productos e informate del precio total, incluido IVA y GASTOS DE ENVIO:  1) Rodillo 2) Esterilla 3) Mat 4) Bloque 5) AlmohadaLumbar 6) KitRelax 7) MediasAntideslizantes 8) BolsaYoga 9) Almohadon 10) Kit"
+    'a continuación nuestra lista de productos e informate del precio total, incluido IVA y GASTOS DE ENVIO: \n 1) Rodillo \n 2) Esterilla \n 3) Mat \n 4) Bloque \n 5) AlmohadaLumbar \n 6) KitRelax \n 7) MediasAntideslizantes \n 8) BolsaYoga \n 9) Almohadon \n 10) Kit'
   );
 
   switch (productoElegido) {
-    case "Rodillo":
-      console.log("precioFinalRodillo:" + " " + precioFinalRodillo);
+    case 'Rodillo':
+      console.log('precioFinalRodillo:' +  ' ' + precioFinalRodillo);
       break;
-    case "Esterilla":
-      console.log("precioFinalEsterilla:" + " " + precioFinalEsterilla);
+    case 'Esterilla':
+      console.log('precioFinalEsterilla:' + ' ' + precioFinalEsterilla);
       break;
-    case "Mat":
-      console.log("precioFinalMat:" + " " + precioFinalMat);
+    case 'Mat':
+      console.log('precioFinalMat:' + ' ' + precioFinalMat);
       break;
-    case "Bloque":
-      console.log("precioFinalBloque:" + " " + precioFinalBloque);
+    case 'Bloque':
+      console.log('precioFinalBloque:' + ' ' + precioFinalBloque);
       break;
-    case "AlmohadaLumbar":
+    case 'AlmohadaLumbar':
       console.log(
-        "precioFinalAlmohadaLumbar:" + " " + precioFinalAlmohadaLumbar
-      );
+        'precioFinalAlmohadaLumbar:' + ' ' + precioFinalAlmohadaLumbar );
       break;
-    case "Kit":
-      console.log("precio oferta:" + " " + precioOferta);
+    case 'Kit':
+      console.log('precio oferta:' + ' ' + precioOferta);
       break;
-    case "KitRelax":
-      console.log("precioFinalKitRelax:" + " " + precioFinalKitRelax);
+    case 'KitRelax':
+      console.log('precioFinalKitRelax:' + ' ' + precioFinalKitRelax);
       break;
-    case "MediasAntideslizantes":
+    case 'MediasAntideslizantes':
       console.log(
-        "precioFinalMediasAntideslizantes:" + " " + precioMediasAntideslizantes
+        'precioFinalMediasAntideslizantes' + ' ' + precioMediasAntideslizantes
       );
       break;
     case "BolsaYoga":
-      console.log("precioFinalBolsaYoga:" + " " + precioFinalBolsaYoga);
+      console.log('precioFinalBolsaYoga:' + ' ' + precioFinalBolsaYoga);
       break;
-    case "Almohadon":
-      console.log("precioFinalAlmohadon:" + " " + precioFinalAlmohadon);
+    case 'Almohadon':
+      console.log('precioFinalAlmohadon:' + ' ' + precioFinalAlmohadon);
       break;
     default:
-      alert("No tenemos ese producto. Gracias por su interés.");
+      alert('No tenemos ese producto. Gracias por su interés.');
       break;
   }
 
-} else if(productoElegido == "no"){
-  alert("Gracias por visitarnos!! Hasta pronto.")
+} else if(productoElegido == 'no'){
+  alert('Gracias por visitarnos!! Hasta pronto.')
 
 }
-  while (productoElegido != "no") {
-    let producto = prompt("agrega un producto a tu carrito")
+  while (productoElegido != 'no') {
+    let producto = prompt('agrega un producto a tu carrito')
     let precio = 0
   
     if (
-      producto == "Rodillo" ||
-      producto == "Esterilla" ||
-      producto == "Mat" ||
-      producto == "Bloque" ||
-      producto == "AlmohadaLumbar" ||
-      producto == "Kit" ||
-      producto == "KitRelax" ||
-      producto == "MediasAntideslizantes" ||
-      producto == "BolsaYoga" ||
-      producto == "Almohadon"
+      producto == 'Rodillo' ||
+      producto == 'Esterilla' ||
+      producto == 'Mat' ||
+      producto == 'Bloque' ||
+      producto == 'AlmohadaLumbar' ||
+      producto == 'Kit' ||
+      producto == 'KitRelax' ||
+      producto == 'MediasAntideslizantes' ||
+      producto == 'BolsaYoga' ||
+      producto == 'Almohadon'
     ) {
       switch (producto) {
-        case "Rodillo":
-          precio = "6529";
+        case 'Rodillo':
+          precio = '6529';
           break;
   
-        case "Esterilla":
-          precio = "5438";
+        case 'Esterilla':
+          precio = '5438';
           break;
   
-        case "Mat":
-          precio = "7134";
+        case 'Mat':
+          precio = '7134';
           break;
   
-        case "Bloque":
-          precio = "4834";
+        case 'Bloque':
+          precio = '4834';
           break;
-        case "AlmohadaLumbar":
-          precio = "6287";
+        case 'AlmohadaLumbar':
+          precio = '6287';
           break;
-        case "Kit":
-          precio = "13920";
+        case 'Kit':
+          precio = '13920';
           break;
-        case "KitRelax":
-          precio = "7739";
+        case 'KitRelax':
+          precio = '7739';
           break;
-        case "MediasAntideslizantes":
-          precio = "5400";
+        case 'MediasAntideslizantes':
+          precio = '5400';
           break;
-        case "BolsaYoga":
-          precio = "17417";
+        case 'BolsaYoga':
+          precio = '17417';
           break;
-        case "Almohadon":
-          precio = "9796";
+        case 'Almohadon':
+          precio = '9796';
           break;
         default:
-          alert:("No tenemos ese producto");
+          alert('No tenemos ese producto');
           break;
       }
 
     
-      let unidades = parseInt(prompt("Cuántas unidades quieres?"));
+      let unidades = parseInt(prompt('Cuántas unidades quieres?'));
       if (producto == producto) {
-      let calculo = precio * unidades
+      let calculo = precio * unidades;
       console.log(calculo);
-      
+    
       }
+     
        else {
-        alert("No tenemos ese producto")
+        alert('No tenemos ese producto');
       }
-  productoElegido = prompt("Quieres seguir comprando?")
   
-  while (productoElegido === "no") {
-    alert("gracias por su compra!! Hasta pronto")
+  productoElegido = prompt('Quieres seguir comprando?')
+ 
+  while (productoElegido === 'no') {
+    alert('gracias por su compra!! Hasta pronto');
+    if (producto == producto){
+      let carritoFinal = ((precio*unidades)+(precio*unidades));
+    
+      console.log(carritoFinal);
+    }
     break;
   }
-
-  
-/*let sumarCompra;
-  if (producto != producto){
-    let resultadoTotal = precio + precio
-    console.log(resultadoTotal)
-  }
-  else{
-    alert("no")
-  }*/
 }
   }
