@@ -22,7 +22,7 @@ if (productoElegido == "si") {
   class Producto {
     constructor(id, producto, precio) {
       this.id = id;
-      this.producto = producto.toUpperCase();
+      this.producto = producto;
       this.precio = parseFloat(precio);
       this.vendido = false;
     }
@@ -79,20 +79,18 @@ if (productoElegido == "si") {
 
   const carrito = [];
   while (productoElegido != "no") {
-    let compra = prompt("agrega un producto a tu carrito");
-    compra = compra.toUpperCase();
-    prodElegido = productos.find((p) => p.producto === compra);
+    let compra = prompt("agrega un producto a tu carrito".toLowerCase());
     console.log(compra);
-
-    const prodComprado = productos.some((p) => p.producto === compra);
+   
+    const prodComprado = productos.find((p) => p.producto === compra);
     console.log(prodComprado);
 
-    if (prodComprado == true) {
+    if (prodComprado) {
       alert("Producto comprado");
       
-      let precio;
       let unidades = parseInt(prompt("Cuántas unidades quieres?"));
-      carrito.push({ compra, unidades, precio });
+     
+      carrito.push({...prodComprado, unidades:unidades});
       console.log(carrito);
     } else {
       alert("No tenemos ese producto");
@@ -104,9 +102,10 @@ if (productoElegido == "si") {
       alert("gracias por tu compra!. Hasta Pronto!!");
 
       carrito.forEach((carritoFinal) => {
-        carritoFinal.prodComprado + " " + carrito.unidades + " " + "$" +
-          carrito.precio});
-      console.log(carrito);
+        carritoFinal.prodComprado + " " + carrito.unidades * unidades.unidades + " " + "$" 
+        });
+       console.log(carrito);
+
       /*const totalCarrito =productos.reduce((acumulador, producto) => acumulador + producto.precio,0);
   console.log(totalCarrito);*/
        break;
