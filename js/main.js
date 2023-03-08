@@ -29,9 +29,7 @@ if (productoElegido == "si") {
     sumaIVA() {
       this.precio = this.precio * 1.21;
     }
-    // sumaGastoEnvio() {
-    //   this.precio = this.precio + 600;
-    // }
+   
     vender() {
       this.vendido = true;
     }
