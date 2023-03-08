@@ -29,7 +29,7 @@ if (productoElegido == "si") {
     sumaIVA() {
       this.precio = this.precio * 1.21;
     }
-   
+
     vender() {
       this.vendido = true;
     }
@@ -75,61 +75,56 @@ if (productoElegido == "si") {
   } else {
     alert("Producto Inexistente");
   }
-
-
+  
   const carrito = [];
   while (productoElegido != "no") {
     let compra = prompt("agrega un producto a tu carrito".toLowerCase());
     console.log(compra);
-   
+
     const prodComprado = productos.find((p) => p.producto === compra);
     console.log(prodComprado);
 
     if (prodComprado) {
       alert("Producto comprado");
-      
+
       let unidades = parseInt(prompt("Cuántas unidades quieres?"));
-     
-      carrito.push({...prodComprado, unidades:unidades});
+
+      carrito.push({ ...prodComprado, unidades: unidades });
       console.log(carrito);
     } else {
       alert("No tenemos ese producto");
     }
 
     productoElegido = prompt("Quieres seguir comprando?");
+  }
+  while (productoElegido === "no") {
+    alert("gracias por tu compra!. Hasta Pronto!!");
+
     
-    while (productoElegido === "no") {
-      alert("gracias por tu compra!. Hasta Pronto!!");
-
-      carrito.forEach((carritoFinal) => {
-        carritoFinal.prodComprado + " " + carrito.unidades * unidades.unidades + " " + "$" 
+  
+    carrito.forEach((carritoFinal) => {
+        carritoFinal.producto * carritoFinal.unidades 
+       
         });
-       console.log(carrito);
-
-      /*const totalCarrito =productos.reduce((acumulador, producto) => acumulador + producto.precio,0);
-  console.log(totalCarrito);*/
+        
+       console.log("Total a pagar por producto: $" + carrito);
        break;
       }
-    }
-      
-    }else if(productoElegido == "no") {
-      alert("Gracias por visitarnos!! Hasta pronto.");
-    }
-  
 
+  const totalCompra = carrito.reduce(
+    (acc, el) => acc + el.precio * el.unidades, 0
+  );
 
-/*
-const totalCompra = carrito.reduce(
-  (acc, el) => acc + el.precio * el.unidades,0);
+  console.log("El total de tu compra es:" + " " + "$" +totalCompra);
 
-console.log("El total de tu compra es:" + " " + totalCompra);
-
-} else if (productoElegido == "no") {
+}else if(productoElegido == "no") {
   alert("Gracias por visitarnos!! Hasta pronto.");
 }
-let distancia = prompt("A cuántos km. vives de Tandil (Bs.AS)??");
+  let distancia = prompt("A cuántos km. vives de Tandil (Bs.AS)??");
   if (distancia > 40) {
-    alert("Debes abonar $ 600 de gasto de envío por tu compra");
+    alert("Debes abonar $ 600 de gasto de envío");
   } else {
     alert("No debes abonar gasto de envío");
-  }*/
+  }
+
+ 
