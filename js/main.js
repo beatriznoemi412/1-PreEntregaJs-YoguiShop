@@ -98,33 +98,38 @@ if (productoElegido == "si") {
     productoElegido = prompt("Quieres seguir comprando?");
   }
   while (productoElegido === "no") {
-    alert("gracias por tu compra!. Hasta Pronto!!");
+    alert("gracias por tu compra!.");
 
-    
   
-    carrito.forEach((carritoFinal) => {
-        carritoFinal.producto * carritoFinal.unidades 
-       
-        });
+      let subtotal = 0;
+    
+      carrito.forEach((carritoSubtotal) => {
         
-       console.log("Total a pagar por producto: $" + carrito);
-       break;
-      }
+         subtotal += carritoSubtotal.producto * carritoSubtotal.unidades 
+         
+          });
+          
+         console.log(subtotal);
+      
+     break;
+    }
+    
 
   const totalCompra = carrito.reduce(
     (acc, el) => acc + el.precio * el.unidades, 0
   );
 
   console.log("El total de tu compra es:" + " " + "$" +totalCompra);
-
+      
 }else if(productoElegido == "no") {
   alert("Gracias por visitarnos!! Hasta pronto.");
 }
+
   let distancia = prompt("A cuántos km. vives de Tandil (Bs.AS)??");
   if (distancia > 40) {
-    alert("Debes abonar $ 600 de gasto de envío");
+    alert("Debes abonar $ 600 de gasto de envío. Hasta pronto!!");
   } else {
-    alert("No debes abonar gasto de envío");
+    alert("No debes abonar gasto de envío. hasta pronto!!");
   }
 
  
