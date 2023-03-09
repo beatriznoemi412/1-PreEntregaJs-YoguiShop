@@ -58,6 +58,8 @@ if (productoElegido == "si") {
 
   alert(todoslosProductos.join("\n"));
 
+  //Usuario consulta sobre existencia de producto para su compra
+
   const consulta = parseInt(
     prompt(
       "Consultas sobre algún producto? Ingrese el numero: \n 1-rodillo,\n 2-esterilla,\n 3-mat,\n 4-bloque,\n 5-almohada lumbar,\n 6-kit,\n 7-kit relax,\n 8-medias antideslizantes,\n 9-bolsa yoga,\n 10-almohadon."
@@ -75,7 +77,26 @@ if (productoElegido == "si") {
   } else {
     alert("Producto Inexistente");
   }
+  //Se calcula e informa a usuario que tiene 10% descuento por pago contado
+  const productosDescuento = productos.map((producto) => {
+    return { producto: producto.producto, precio:producto.precio -(producto.precio * 0.1 )};
+  });
+
+  console.log(productosDescuento);
+
+  function descuento(precio, porcentaje) {
+    return precio - (precio * porcentaje) / 100;
+  }
+  for (let index = 0; index < 10; index++) {
+    let resultado = descuento(parseFloat(prompt("HOY TIENES - 10% PAGO CONTADO. INGRESA UN PRECIO DE PRODUCTO. ")),
+      parseFloat(prompt("INGRESA % DE DESCUENTO")));
   
+    alert(resultado);
+    break;
+  }
+
+  //Usuario procede a elegir productos para ingresar a carrito
+
   const carrito = [];
   while (productoElegido != "no") {
     let compra = prompt("agrega un producto a tu carrito".toLowerCase());
@@ -94,38 +115,47 @@ if (productoElegido == "si") {
     } else {
       alert("No tenemos ese producto");
     }
-  
+
     productoElegido = prompt("Quieres seguir comprando?");
-}
+  }
   while (productoElegido === "no") {
     alert("gracias por la compra!.");
 
-   
-   
-     carrito.forEach((subtotal) => {
-        console.log( "Producto:" + " " + subtotal.producto + " " + "unidades:" + subtotal.unidades +" " + "Precio producto $:" + " " +
-        subtotal.precio + " " + "Subtotal compra: $" + " " + subtotal.precio * subtotal.unidades)});
-  
-     break;
-    }  
+    carrito.forEach((subtotal) => {
+      console.log(
+        "Producto:" +
+          " " +
+          subtotal.producto +
+          " " +
+          "unidades:" +
+          subtotal.unidades +
+          " " +
+          "Precio producto $:" +
+          " " +
+          subtotal.precio +
+          " " +
+          "Subtotal compra: $" +
+          " " +
+          subtotal.precio * subtotal.unidades
+      );
+    });
+
+    break;
+  }
 
   const totalCompra = carrito.reduce(
-    (acc, el) => acc + el.precio * el.unidades, 0
+    (acc, num) => acc + num.precio * num.unidades,
+    0
   );
 
-  console.log("El total de la compra es:" + " " + "$" +totalCompra);
-
-  
-
-}else if(productoElegido == "no") {
+  console.log("El total de la compra es:" + " " + "$" + totalCompra);
+} else if (productoElegido == "no") {
   alert("Gracias por visitarnos!! Hasta pronto.");
 }
 
-  let distancia = prompt("A cuántos km. vives de Tandil (Bs.AS)??");
-  if (distancia > 40) {
-    alert("Debes abonar $ 600 de gasto de envío. Hasta pronto!!");
-  } else {
-    alert("No debes abonar gasto de envío. hasta pronto!!");
-  }
-
- 
+let distancia = prompt("A cuántos km. vives de Tandil (Bs.AS)??");
+if (distancia > 40) {
+  alert("Debes abonar $ 600 de gasto de envío. Hasta pronto!!");
+} else {
+  alert("No debes abonar gasto de envío. hasta pronto!!");
+}
