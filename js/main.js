@@ -60,7 +60,7 @@ if (productoElegido == "si") {
 
   const consulta = parseInt(
     prompt(
-      "Consultas sobre algún producto? Ingrese el numero 1-rodillo, 2-esterilla, 3-mat, 4-bloque, 5-almohada lumbar, 6-kit, 7-kit relax, 8-medias antideslizantes, 9-bolsa yoga, 10-almohadon"
+      "Consultas sobre algún producto? Ingrese el numero: \n 1-rodillo,\n 2-esterilla,\n 3-mat,\n 4-bloque,\n 5-almohada lumbar,\n 6-kit,\n 7-kit relax,\n 8-medias antideslizantes,\n 9-bolsa yoga,\n 10-almohadon."
     )
   );
 
@@ -81,7 +81,7 @@ if (productoElegido == "si") {
     let compra = prompt("agrega un producto a tu carrito".toLowerCase());
     console.log(compra);
 
-    const prodComprado = productos.find((p) => p.producto === compra);
+    const prodComprado = productos.find((prod) => prod.producto === compra);
     console.log(prodComprado);
 
     if (prodComprado) {
@@ -94,33 +94,29 @@ if (productoElegido == "si") {
     } else {
       alert("No tenemos ese producto");
     }
-
-    productoElegido = prompt("Quieres seguir comprando?");
-  }
-  while (productoElegido === "no") {
-    alert("gracias por tu compra!.");
-
   
-      let subtotal = 0;
-    
-      carrito.forEach((carritoSubtotal) => {
-        
-         subtotal += carritoSubtotal.producto * carritoSubtotal.unidades 
-         
-          });
-          
-         console.log(subtotal);
-      
+    productoElegido = prompt("Quieres seguir comprando?");
+}
+  while (productoElegido === "no") {
+    alert("gracias por la compra!.");
+
+   
+   
+     carrito.forEach((subtotal) => {
+        console.log( "Producto:" + " " + subtotal.producto + " " + "unidades:" + subtotal.unidades +" " + "Precio producto $:" + " " +
+        subtotal.precio + " " + "Subtotal compra: $" + " " + subtotal.precio * subtotal.unidades)});
+  
      break;
-    }
-    
+    }  
 
   const totalCompra = carrito.reduce(
     (acc, el) => acc + el.precio * el.unidades, 0
   );
 
-  console.log("El total de tu compra es:" + " " + "$" +totalCompra);
-      
+  console.log("El total de la compra es:" + " " + "$" +totalCompra);
+
+  
+
 }else if(productoElegido == "no") {
   alert("Gracias por visitarnos!! Hasta pronto.");
 }
