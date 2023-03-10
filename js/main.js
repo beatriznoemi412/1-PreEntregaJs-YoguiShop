@@ -24,7 +24,7 @@ if (productoElegido == "si") {
       this.id = id;
       this.producto = producto;
       this.precio = parseFloat(precio);
-      this.vendido = false;
+      
     }
     sumaIVA() {
       this.precio = this.precio * 1.21;
@@ -50,7 +50,7 @@ if (productoElegido == "si") {
 
   for (const producto of productos) {
     producto.sumaIVA();
-    // producto.sumaGastoEnvio();
+    
   }
   const todoslosProductos = productos.map(
     (producto) => producto.producto + " " + producto.precio + "$"
@@ -77,23 +77,37 @@ if (productoElegido == "si") {
   } else {
     alert("Producto Inexistente");
   }
-  //Se calcula e informa a usuario que tiene 10% descuento por pago contado
-  const productosDescuento = productos.map((producto) => {
-    return { producto: producto.producto, precio:producto.precio -(producto.precio * 0.1 )};
-  });
+//Posible descuento si paga en efectivo
+  alert("HOY TIENES - 10% PAGO EFECTIVO!!!");
+  const porcentajeDescuento = parseFloat(
+    prompt("Ingresa el porcentaje de descuento")
+  );
 
-  console.log(productosDescuento);
+  const productosDescuento = productos.map((producto) => {
+    const precioConDescuento = descuento(producto.precio, porcentajeDescuento);
+    return {
+      producto: producto.producto,
+      precio: precioConDescuento,
+      descuento: porcentajeDescuento,
+    };
+  });
 
   function descuento(precio, porcentaje) {
     return precio - (precio * porcentaje) / 100;
   }
-  for (let index = 0; index < 10; index++) {
-    let resultado = descuento(parseFloat(prompt("HOY TIENES - 10% PAGO CONTADO. INGRESA UN PRECIO DE PRODUCTO. ")),
-      parseFloat(prompt("INGRESA % DE DESCUENTO")));
-  
-    alert(resultado);
-    break;
-  }
+
+  const todaLaMercaderia = productosDescuento.map(
+    (producto) =>
+      producto.producto +
+      " " +
+      producto.precio.toFixed(2) +
+      "$ (descuento " +
+      producto.descuento +
+      "%)"
+  );
+
+  alert(todaLaMercaderia.join("\n"));
+  console.log(productosDescuento);
 
   //Usuario procede a elegir productos para ingresar a carrito
 
@@ -152,6 +166,7 @@ if (productoElegido == "si") {
 } else if (productoElegido == "no") {
   alert("Gracias por visitarnos!! Hasta pronto.");
 }
+
 
 let distancia = prompt("A cuántos km. vives de Tandil (Bs.AS)??");
 if (distancia > 40) {
