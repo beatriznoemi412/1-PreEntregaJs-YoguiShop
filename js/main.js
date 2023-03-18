@@ -1,51 +1,222 @@
-const mayoriaEdad = 18;
-let age = prompt("Cuántos años tienes?");
+const carro = document.querySelector(".contenedorCarrito");
+const verCarrito = document.getElementById("verCarrito");
+const ventanaContainer = document.getElementById("ventanaContainer");
+const carritoCantidad = document.getElementById("carritoCantidad");
 
-if (age >= mayoriaEdad) {
-  alert("Puedes comprar");
-} else {
-  alert("Regresa cuando tengas 18 años");
-}
+const carrito = [];
 
-//El usuario elige producto y se informa precio final
-let productoElegido = prompt("Hola, deseas comprar algún producto: si o no");
 
-while (productoElegido != "si" && productoElegido.toUpperCase() != "no") {
-  alert("Por favor ingresa si o no");
-  productoElegido = prompt("Hola, deseas comprar algún producto: si o no");
-}
-if (productoElegido == "si") {
-  productoElegido = alert(
-    "A continuación nuestros productos e informate del precio total, incluido IVA"
-  );
+const productos = [
+  {
+    id: 1,
+    nombre: "Rodillo de Masajes",
+    precio: "4900 + IVA", 
+    precioConIva: 5929,
+    imagen: "../assets/accesorio.jpg",
+    descripcionCorta: "Rodillo  de masajes de espuma",
+    descripcion:
+    "Rodillo de Espuma para Puntos Desencadenantes.  Ideal para elongar, preparar y relajar los músculos antes y después de ejercitarlos. Produce un efectivo masaje en Músculos Doloridos y tensos, incentivando la mejor circulación sanguinea y mayor bienestar en todo el organismo.",
+    cantidad: 1,
+  },
+  {
+    id: 2,
+    nombre: "Esterilla Acolchada",
+    precio: "3999 + IVA", 
+    precioConIva: 4838.79,
+    imagen: "../assets/images(13).jpg",
+    descripcionCorta: "Esterilla Acolchada antideslizante",
+    descripcion:
+      "Esterilla acolchada 100% antideslizante, 1.5cm de espesor. La colchoneta yoga mide 1 x 61,5  x 182 cm (alto x ancho x fondo) y sirve perfectamente tanto para hacer ejercicios como para dormir, cabe en cualquier bolso y carpa. Ideal para ejercitarse o descansar cómodamente.",
+    cantidad: 1,
+    },
+  {
+    id: 3,
+    nombre: "Mat",
+    precio: "5400 + IVA",
+    precioConIva: 6534,
+    imagen: "../assets/images(15).jpg",
+    tituloCard: "Mat ecológico",
+    descripcion:
+      "Esterilla Yoga Antideslizante, Colchoneta Yoga Mat con Material Ecológico TPE ,Colchoneta Gimnasia con Correa de Hombro.  Esta alfombra de entrenamiento tiene superficies antideslizantes de doble cara brindando una actividad segura y placentera.",
+    cantidad: 1,
+    },
+  {
+    id: 4,
+    nombre: "Bloque de Yoga",
+    precio: "3499 + IVA",
+    precioConIva: 4233.79,
+    imagen: "../assets/bloque.jpg",
+    tituloCard: "Bloque de goma eva",
+    descripcion:
+      "Bloque de Yoga y Correa. Es un bloque de goma eva de alta densidad para apoyar y profundizar las posturas. Correa Yoga（2.4m） para Estiramiento y elongación de brazos, piernas y espalda. Está diseñado para actividades como yoga, stretching, pilates y rehabilitación.",
+    cantidad: 1,
+    },
+  {
+    id: 5,
+    nombre: "Almohada Lumbar",
+    precio: "4700 + IVA",
+    precioConIva: 5687,
+    imagen: "../assets/almohada_lumbar.jpg",
+    tituloCard: "almohada correctora",
+    descripcion:
+      "Almohada de refuerzo de yoga, de cintura y para vértebras lumbares. Corrección de pelvis. Es una buena ayuda para aliviar la presión y el dolor en cintura, rodillas, caderas y articulaciones de los tobillos. Brinda mayor beneficio postural a la hora de ejercitar.",
+    cantidad: 1,
+    },
+  {
+    id: 6,
+    nombre: "Kit x 3",
+    precio: "12000 + IVA", 
+    precioConIva: 14520,
+    imagen: "../assets/set.jpg",
+    tituloCard: "Kit: cinturón, bloque y bolster",
+    descripcion:
+      "Con estos 3 productos: cinturón, bloques y bolster tenés la posibilidad de experimentar las asanas de yoga con mayor facilidad y comodidad; realizando tus ejercicios con mayor técnica y eficacia. Esto garantiza un cuerpo sin lesiones. Los súper recomendamos!.",
+    cantidad: 1,
+    },
+  {
+    id: 7,
+    nombre: "Kit Relax",
+    precio: "5900 + IVA",
+    precioConIva: 7139,
+    imagen: "../assets/kit-relax.jpeg",
+    tituloCard: "Kit terapéutico",
+    descripcion:
+      "Conjunto terapéutico de almohada cervical y ocular. Se adapta al cuerpo, relaja, desinflama y quita tensiones, además de la propiedad de ser aromática, aplicándose la aromaterapia.",
+    cantidad: 1,
+    },
+  {
+    id: 8,
+    nombre: "Medias Antideslizantes",
+    precio: "5400 + IVA",
+    precioConIva: 6534,
+    imagen: "../assets/media.jpg",
+    tituloCard: "Medias deportivas, antideslizantes",
+    descripcion:
+      "3 Pares Medias de Yoga Antideslizantes. Media Deportiva para Pilates, Danza, Fitness, con Suela de Silicona. Stock en varios colores. Evita lesiones y Ampollas. Talla única (35-40). ",
+    cantidad: 1,
+    },
+  {
+    id: 9,
+    nombre: "Bolsa de Yoga",
+    precio: "13900 + IVA",
+    precioConIva: 14520,
+    imagen: "../assets/bolso.jpg",
+    tituloCard: "Bolsa para esterilla",
+    descripcion:
+      "Bolsa de Yoga para Esterilla, Bolsa de Yoga portátil Impermeable y Correa de Esterilla de Yoga Ajustable. Bolsa de Transporte para Esterilla de Yoga de Longitud Extra con 2 Bolsillos.",
+    cantidad: 1,
+    },
+  {
+    id: 10,
+    nombre: "Almohadon",
+    precio: "7600 + IVA",
+    precioConIva: 9196,
+    imagen: "../assets/almohadon.jpg",
+    tituloCard: "Almohadón de trigo",
+    descripcion:
+      "Cojin o almohadón yoga con relleno de trigo sarraceno, altura 15 x 35cm. Es la ayuda perfecta para su relajación, ya sea en casa, en estudios de yoga o meditación. Favorece el apoyo cómodo de las piernas y la verticalidad de la columna.",
+    cantidad: 1,
+    },
+  {
+    id: 11,
+    nombre: "Aro Dribbling",
+    precio: "3200 + IVA",
+    precioConIva:3872,
+    imagen: "../assets/aro.jpg",
+    tituloCard: "Aro de yoga",
+    descripcion:
+      "el Aro Dribbling Pilates mejora tu equilibrio, postura y la flexibilidad, podés trabajar brazos y piernas de forma isométrica. Activa y tonifica los músculos de forma específica y sin gran esfuerzo. De fácil almacenamiento",
+    cantidad: 1,
+    },
+];
+
+for (const item of productos){
+  let tarjeta = document.createElement("div");
+  tarjeta.className = "card";
+  tarjeta.id = `${item.id}`;
+  tarjeta.innerHTML = `<h5 class="card-header">${item.nombre}</5>
+<img src="${item.imagen}" class="card-img-top imagenProducto"
+alt="${item.tituloCard}">
+<div class="card-body">               
+    <p class="card-text">${item.descripcion}</p> 
+    <p class="btn" id="precio">$ ${item.precio}</p>
+    <p class="iva">$ ${item.precioConIva}</p>
+    </div>`;
+
+  carro.append(tarjeta);
 
   class Producto {
-    constructor(id, producto, precio) {
+    constructor(id, nombre, precio, _prod) {
       this.id = id;
-      this.producto = producto;
-      this.precio = parseFloat(precio);
-      
+      this.nombre = nombre;
+      this.precio = precio;
+      this._prod = []
     }
-    sumaIVA() {
-      this.precio = this.precio * 1.21;
+    calcularIVA() {
+     const iva = this.precio * .21;
+     return iva;
     }
+    comprar(){
+      console.log(`compraste ${this.nombre} por ${this.precio}`);
+    }
+    }
+  
+  const articulos = [];
+    articulos.push(new Producto(1, "rodillo", 4900));
+    articulos.push(new Producto(2, "esterilla", 3999));
+    articulos.push(new Producto(3, "mat", 5400));
+    articulos.push(new Producto(4, "bloque", 3499));
+    articulos.push(new Producto(5, "almohada lumbar", 4700));
+    articulos.push(new Producto(6, "kit", 12000));
+    articulos.push(new Producto(7, "kit relax", 5900));
+    articulos.push(new Producto(8, "medias antideslizantes", 5400));
+    articulos.push(new Producto(9, "bolsa yoga", 13900));
+    articulos.push(new Producto(10, "almohadón", 7600));
+    articulos.push(new Producto(11, "Aro Dribbling", 3200));
+    
+    const ivaElemento = document.querySelector(".iva")
+    //obtengo el producto del cual se desea calcular el IVA
+    const producto = articulos[0] ;
+   //calcular el IVA y mostrarlo en DOM
+   const iva = producto.calcularIVA();
+   ivaElemento.innerText = `El IVA es: ${iva}, total: $ ${iva + producto.precio}`;
+   tarjeta.append(iva);
+  
 
-    vender() {
-      this.vendido = true;
-    }
-  }
-  const productos = [];
-  productos.push(new Producto(1, "rodillo", 4900));
-  productos.push(new Producto(2, "esterilla", 3999));
-  productos.push(new Producto(3, "mat", 5400));
-  productos.push(new Producto(4, "bloque", 3499));
-  productos.push(new Producto(5, "almohada lumbar", 4700));
-  productos.push(new Producto(6, "kit", 12000));
-  productos.push(new Producto(7, "kit relax", 5900));
-  productos.push(new Producto(8, "medias antideslizantes", 5400));
-  productos.push(new Producto(9, "bolsa yoga", 13900));
-  productos.push(new Producto(10, "almohadón", 7600));
+   //producto = productos [0];
+   //producto.comprar();
+  
+  
+    const comprar =  document.createElement("button");
+    comprar.innerText = "comprar";
+    comprar.className = "comprar";
+    
+    tarjeta.append(comprar);
+  
+    comprar.addEventListener("click", () => {
+    const productoRepetido = carrito.some((productoRepeat) => productoRepeat.id === item.id);
+  
+    if(productoRepetido){
+      carrito.map((prod)=>{
+        if(prod.id === item.id){
+          prod.cantidad++;
+        }
+      })
+    }else{
+        carrito.push({
+        id: item.id,
+        nombre: item.nombre,
+        precio: item.precio,
+        precioconIVA : item.precioConIva,
+        imagen: item.imagen,
+        cantidad : item.cantidad,
+      });
+    console.log(carrito);
+   }
+    });
+}
 
+/*
   console.log(productos);
 
   for (const producto of productos) {
@@ -174,3 +345,4 @@ if (distancia > 40) {
 } else {
   alert("No debes abonar gasto de envío. hasta pronto!!");
 }
+*/
