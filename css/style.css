@@ -221,9 +221,15 @@ h3 {
   align-content: center;
   gap: 35px;
 }
-#precio, .iva{
+#precio{
   background: aquamarine;
   width : 100px;
+  border-radius: .4em;
+
+}
+#precioIVA{
+  background: aquamarine;
+  width : 150px;
   border-radius: .4em;
 
 }
