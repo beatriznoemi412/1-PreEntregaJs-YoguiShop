@@ -27,6 +27,9 @@ class Producto {
     this.descripcion = descripcion;
     this.cantidad = cantidad;
   }
+  calcularIVA(){
+    return this.precio * .21;
+    }
   crearTarjeta() {
     //creo elementos de la tarjeta
     const tarjeta = document.createElement("div");
@@ -43,15 +46,14 @@ class Producto {
         
         </div>`;
       
-
     //agrego tarjeta a página
     carro.append(tarjeta);
 }
-  calcularIVA(){
-  return this.precio * .21;
-  }
+comprar(){
+
+}
   
-   }
+}
   
 const productos = [
   {
@@ -176,40 +178,42 @@ const productos = [
     cantidad: 1,
   },
 ];
+
 for (let i = 0; i < productos.length; i++) {
   const producto = productos[i];
+
   const tarjeta = new Producto(producto.id, producto.nombre, producto.precio, producto.precioConIva, producto.imagen, producto.descripcionCorta, producto.descripcion);
-    tarjeta.crearTarjeta();
+  tarjeta.crearTarjeta();
+  
 
   const iva = tarjeta.calcularIVA();
   console.log(`El IVA para ${producto.nombre} es de ${iva}`);
 
 
-
+}
 
 const compra = document.querySelector("#compra");
 compra.addEventListener("click", () => {
-
-  const productoRepetido = carrito.some((productoRepeat) => productoRepeat.id === producto.id);
+ 
+ 
+  const productoRepetido = carrito.some((productoRepeat) => productoRepeat.id === this.id);
 
   if(productoRepetido){
     carrito.map((prod)=>{
-      if(prod.id === producto.id){
+      if(prod.id === this.id){
         prod.cantidad++;
       }
     })
   }else{
 
     carrito.push({
-      id: Producto.id,
-      nombre: producto.nombre,
-      precio:producto.precio,
-      precioconIVA : producto.precioConIva,
-      imagen: producto.imagen,
-      cantidad : producto.cantidad,
+      id: this.id,
+      nombre: this.nombre,
+      precio:this.precio,
+      precioconIVA : this.precioConIva,
+      cantidad : this.cantidad,
     });
   console.log(carrito);
  }
 
 });
-}
