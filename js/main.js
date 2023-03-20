@@ -15,6 +15,7 @@ class Producto {
     imagen,
     descripcionCorta,
     descripcion,
+    cantidad,
     
   ) {
     this.id = id;
@@ -24,7 +25,7 @@ class Producto {
     this.imagen = imagen;
     this.descripcionCorta = descripcionCorta;
     this.descripcion = descripcion;
-    
+    this.cantidad = cantidad;
   }
   crearTarjeta() {
     //creo elementos de la tarjeta
@@ -38,8 +39,8 @@ class Producto {
         <p class="card-text">${this.descripcion}</p> 
         <p class="btn" id="precio">$ ${this.precio}</p>
         <p class="btn" id="precioIVA"> precio con IVA: $ ${this.precioConIVA}</p>
-        <button class="comprar" id="compra">COMPRAR</button>
-       
+        <button class="comprar" id="compra">COMPRAR </button>
+        
         </div>`;
       
 
@@ -49,8 +50,9 @@ class Producto {
   calcularIVA(){
   return this.precio * .21;
   }
-}
-
+  
+   }
+  
 const productos = [
   {
     id: 1,
@@ -183,30 +185,31 @@ for (let i = 0; i < productos.length; i++) {
   console.log(`El IVA para ${producto.nombre} es de ${iva}`);
 
 
+
+
 const compra = document.querySelector("#compra");
 compra.addEventListener("click", () => {
 
-  const productoRepetido = carrito.some((productoRepeat) => productoRepeat.id === item.id);
+  const productoRepetido = carrito.some((productoRepeat) => productoRepeat.id === producto.id);
 
   if(productoRepetido){
     carrito.map((prod)=>{
-      if(prod.id === Producto.id){
+      if(prod.id === producto.id){
         prod.cantidad++;
       }
     })
   }else{
 
     carrito.push({
-      id: productos.id,
-      nombre: productos.nombre,
-      precio: productos.precio,
-      precioconIVA : productos.precioConIva,
-      imagen: productos.imagen,
-      cantidad : productos.cantidad,
+      id: Producto.id,
+      nombre: producto.nombre,
+      precio:producto.precio,
+      precioconIVA : producto.precioConIva,
+      imagen: producto.imagen,
+      cantidad : producto.cantidad,
     });
   console.log(carrito);
  }
 
 });
-    
 }
