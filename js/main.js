@@ -3,58 +3,8 @@ const verCarrito = document.getElementById("verCarrito");
 const ventanaContainer = document.getElementById("ventanaContainer");
 const carritoCantidad = document.getElementById("carritoCantidad");
 
-const carrito = [];
+let carrito = [];
 
-
-class Producto {
-  constructor(
-    id,
-    nombre,
-    precio,
-    precioConIVA,
-    imagen,
-    descripcionCorta,
-    descripcion,
-    cantidad,
-    
-  ) {
-    this.id = id;
-    this.nombre = nombre;
-    this.precio = precio;
-    this.precioConIVA = precioConIVA;
-    this.imagen = imagen;
-    this.descripcionCorta = descripcionCorta;
-    this.descripcion = descripcion;
-    this.cantidad = cantidad;
-  }
-  calcularIVA(){
-    return this.precio * .21;
-    }
-  crearTarjeta() {
-    //creo elementos de la tarjeta
-    const tarjeta = document.createElement("div");
-    tarjeta.className = "card";
-    tarjeta.id = `${this.id}`;
-    tarjeta.innerHTML = `<h5 class="card-header">${this.nombre}</5>
-    <img src= "${this.imagen}" class="card-img-top imagenProducto">
-    <div class="card-body">   
-        <p class="card-text">${this.descripcionCorta}</p>       
-        <p class="card-text">${this.descripcion}</p> 
-        <p class="btn" id="precio">$ ${this.precio}</p>
-        <p class="btn" id="precioIVA"> precio con IVA: $ ${this.precioConIVA}</p>
-        <button class="comprar" id="compra">COMPRAR </button>
-        
-        </div>`;
-      
-    //agrego tarjeta a página
-    carro.append(tarjeta);
-}
-comprar(){
-
-}
-  
-}
-  
 const productos = [
   {
     id: 1,
@@ -178,42 +128,133 @@ const productos = [
     cantidad: 1,
   },
 ];
+function mostrarProductos() {
+  productos.forEach((producto) => {
+    const precioConIVA = producto.precio * 1.21;
+    const tarjeta = document.createElement("div");
+    tarjeta.className = "card";
+    tarjeta.id = `${producto.id}`;
+    tarjeta.innerHTML = `<h5 class="card-header">${producto.nombre}</5>
+    <img src= "${producto.imagen}" class="card-img-top imagenProducto">
+<div class="card-body">   
+    <p class="card-text">${producto.descripcionCorta}</p>       
+    <p class="card-text">${producto.descripcion}</p> 
+    <p class="btn" id="precio">$ ${producto.precio}</p>
+    <p class="btn" id="precioIVA"> precio con IVA: $ ${precioConIVA}</p>
+    
+    
+    </div>`;
 
-for (let i = 0; i < productos.length; i++) {
-  const producto = productos[i];
+    //AGREGO TARJETA A PAGINA
+    carro.append(tarjeta);
+     //CREO BOTON DE COMPRA
+    let comprar = document.createElement("button");
+    comprar.innerText = "comprar";
+    comprar.className = "comprar";
 
-  const tarjeta = new Producto(producto.id, producto.nombre, producto.precio, producto.precioConIva, producto.imagen, producto.descripcionCorta, producto.descripcion);
-  tarjeta.crearTarjeta();
-  
+    tarjeta.append(comprar);
 
-  const iva = tarjeta.calcularIVA();
-  console.log(`El IVA para ${producto.nombre} es de ${iva}`);
+    comprar.addEventListener("click", () => {
+      const productoRepetido = carrito.some(
+        (productoRepeat) => productoRepeat.id === producto.id
+      );
 
-
-}
-
-const compra = document.querySelector("#compra");
-compra.addEventListener("click", () => {
- 
- 
-  const productoRepetido = carrito.some((productoRepeat) => productoRepeat.id === this.id);
-
-  if(productoRepetido){
-    carrito.map((prod)=>{
-      if(prod.id === this.id){
-        prod.cantidad++;
+      if (productoRepetido) {
+        carrito.map((prod) => {
+          if (prod.id === producto.id) {
+            prod.cantidad++;
+          }
+        });
+      } else {
+        carrito.push({
+          id: producto.id,
+          nombre: producto.nombre,
+          precio: producto.precio,
+          precioconIVA: producto.precioConIva,
+          imagen: producto.imagen,
+          cantidad: producto.cantidad,
+        });
       }
-    })
-  }else{
-
-    carrito.push({
-      id: this.id,
-      nombre: this.nombre,
-      precio:this.precio,
-      precioconIVA : this.precioConIva,
-      cantidad : this.cantidad,
+      console.log(carrito);
+      contadorCarrito();//EN ESTE CASO SE VAN INCORPORANDO LOS PRODUCTOS ELEGIDOS, NO SU CANTIDAD.
     });
-  console.log(carrito);
- }
+  });
+}
+mostrarProductos();
 
-});
+// VENTANA DE COMPRA
+const mostrarCarrito = () => {
+  ventanaContainer.innerHTML = "";
+  ventanaContainer.style.display = "flex";
+  const ventanaHeader = document.createElement("div");
+  ventanaHeader.className = "ventana-header";
+  ventanaHeader.innerHTML = `
+  <h1 class="ventana-header">Carrito</h1>
+`;
+  ventanaContainer.append(ventanaHeader);
+
+  //BOTON ELIMINAR COMPRA
+  const ventanaButton = document.createElement("h1");
+  ventanaButton.innerText = "X";
+  ventanaButton.className = "ventana-header-button";
+
+  ventanaButton.addEventListener("click", () => {
+    ventanaContainer.style.display = "none";
+  });
+  ventanaHeader.append(ventanaButton);
+
+  //RECORRO CARRITO
+
+  carrito.forEach((item) => {
+    const precioConIVA = item.precio * 1.21;
+    let contenidoCarrito = document.createElement("div");
+    contenidoCarrito.className = "ventanaContenedora";
+    contenidoCarrito.innerHTML = `
+
+    <img src="${item.imagen}">
+    <h3 class="text-light">${item.nombre}</h3>
+    <p>${precioConIVA}$</p>
+    <p>Cantidad: ${item.cantidad}</p>
+    <p>Subtotal: ${item.cantidad * precioConIVA}</p>
+    
+    `;
+    ventanaContainer.append(contenidoCarrito);
+   //BOTON ELIMINAR PRODUCTO ELEGIDO
+    let eliminar = document.createElement("span");
+    eliminar.innerText = "❌";
+    eliminar.className = "productoEliminado";
+    contenidoCarrito.append(eliminar);
+
+    eliminar.addEventListener("click", eliminarProducto);
+  });
+
+  //CALCULA TOTAL COMPRA
+
+  const total = carrito.reduce(
+    (acc, el) => acc + el.precio * 1.21 * el.cantidad,
+    0
+  );
+
+  const totalCompra = document.createElement("div");
+  totalCompra.className = "total";
+  totalCompra.innerHTML = `total a pagar: ${total} $`;
+  ventanaContainer.append(totalCompra);
+};
+verCarrito.addEventListener("click", mostrarCarrito);
+//ELIMINA PRODUCTO ELEGIDO
+const eliminarProducto = () => {
+  const id = carrito.find((elemento) => elemento.id);
+
+  carrito = carrito.filter((carritoId) => {
+    return carritoId !== id;
+  });
+
+  contadorCarrito();//ME DICE LA EXTENSIÓN DEL CARRITO, EN ESTE CASO SE RESTA PRODUCTO ELEGIDO
+  mostrarCarrito();
+};
+//OVALO DE COLOR QUE APARECE EN EL CARRITO, SOLO CUANDO EL USUARIO COMPRA, CONTANDO LOS PRODUCTOS ELEGIDOS, NO EL TOTA DE ELLOS.
+const contadorCarrito = () => {
+  carritoCantidad.style.display = "block";
+  carritoCantidad.innerText = carrito.length;
+};
+
