@@ -189,7 +189,7 @@ const mostrarCarrito = () => {
   const ventanaHeader = document.createElement("div");
   ventanaHeader.className = "ventana-header";
   ventanaHeader.innerHTML = `
-  <h1 class="ventana-header">Carrito</h1>
+  <h1 class="ventana-header-title">Carrito</h1>
 `;
   ventanaContainer.append(ventanaHeader);
 
