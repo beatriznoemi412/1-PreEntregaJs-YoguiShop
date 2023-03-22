@@ -3,7 +3,7 @@ const verCarrito = document.getElementById("verCarrito");
 const ventanaContainer = document.getElementById("ventanaContainer");
 const carritoCantidad = document.getElementById("carritoCantidad");
 
-let carrito = [];
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 const productos = [
   {
@@ -141,13 +141,11 @@ function mostrarProductos() {
     <p class="card-text">${producto.descripcion}</p> 
     <p class="btn" id="precio">$ ${producto.precio}</p>
     <p class="btn" id="precioIVA"> precio con IVA: $ ${precioConIVA}</p>
-    
-    
-    </div>`;
+     </div>`;
 
     //AGREGO TARJETA A PAGINA
     carro.append(tarjeta);
-     //CREO BOTON DE COMPRA
+    //CREO BOTON DE COMPRA
     let comprar = document.createElement("button");
     comprar.innerText = "comprar";
     comprar.className = "comprar";
@@ -176,11 +174,19 @@ function mostrarProductos() {
         });
       }
       console.log(carrito);
-      contadorCarrito();//EN ESTE CASO SE VAN INCORPORANDO LOS PRODUCTOS ELEGIDOS, NO SU CANTIDAD.
+      console.log(carrito.length);
+      contadorCarrito(); //EN ESTE CASO SE VAN INCORPORANDO LOS PRODUCTOS ELEGIDOS, NO SU CANTIDAD.
+      saveLocalStorage();
     });
   });
 }
 mostrarProductos();
+//setItem
+const saveLocalStorage = () => {
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+};
+//getItem
+JSON.parse(localStorage.getItem("carrito"));
 
 // VENTANA DE COMPRA
 const mostrarCarrito = () => {
@@ -210,16 +216,14 @@ const mostrarCarrito = () => {
     let contenidoCarrito = document.createElement("div");
     contenidoCarrito.className = "ventanaContenedora";
     contenidoCarrito.innerHTML = `
-
     <img src="${item.imagen}">
     <h3 class="text-light">${item.nombre}</h3>
     <p>${precioConIVA}$</p>
     <p>Cantidad: ${item.cantidad}</p>
     <p>Subtotal: ${item.cantidad * precioConIVA}</p>
-    
-    `;
+     `;
     ventanaContainer.append(contenidoCarrito);
-   //BOTON ELIMINAR PRODUCTO ELEGIDO
+    //BOTON ELIMINAR PRODUCTO ELEGIDO
     let eliminar = document.createElement("span");
     eliminar.innerText = "❌";
     eliminar.className = "productoEliminado";
@@ -227,13 +231,9 @@ const mostrarCarrito = () => {
 
     eliminar.addEventListener("click", eliminarProducto);
   });
-
-  //CALCULA TOTAL COMPRA
-
-  const total = carrito.reduce(
-    (acc, el) => acc + el.precio * 1.21 * el.cantidad,
-    0
-  );
+  //CALCULA TOTAL COMPRA APLICANDO OPERADOR SPREAD
+  const total = carrito.reduce((acc, {precio, cantidad})=>
+   acc + precio *1.21 * cantidad, 0);
 
   const totalCompra = document.createElement("div");
   totalCompra.className = "total";
@@ -249,12 +249,19 @@ const eliminarProducto = () => {
     return carritoId !== id;
   });
 
-  contadorCarrito();//ME DICE LA EXTENSIÓN DEL CARRITO, EN ESTE CASO SE RESTA PRODUCTO ELEGIDO
+  contadorCarrito(); //ME DICE LA EXTENSIÓN DEL CARRITO, EN ESTE CASO SE RESTA PRODUCTO ELEGIDO
+  saveLocalStorage(); //SE ACTUALIZA EL LOCAL STORAGE  CUANDO ELIMINAMOS UN PROD.
   mostrarCarrito();
 };
 //OVALO DE COLOR QUE APARECE EN EL CARRITO, SOLO CUANDO EL USUARIO COMPRA, CONTANDO LOS PRODUCTOS ELEGIDOS, NO EL TOTA DE ELLOS.
 const contadorCarrito = () => {
   carritoCantidad.style.display = "block";
   carritoCantidad.innerText = carrito.length;
-};
+  
+const carritoLength = carrito.length;
+  localStorage.setItem("carritoLength", JSON.stringify(carritoLength));
 
+  carritoCantidad.innerText = JSON.parse(localStorage.getItem("carritoLength"));
+};
+//invoco funcion y cuando refresca página, el globito del contador se sigue viendo, contando los productos elegidos
+contadorCarrito();

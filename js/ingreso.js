@@ -4,9 +4,7 @@ while (seleccion != "si" && seleccion != "no") {
   alert("Por favor, ingresá sí o no");
   seleccion = prompt("Hola, necesitas comprar?: si o no");
 }
+seleccion == "si" ? (alert("En sección Productos podrás encontrar todo nuestro stock."))
+: alert("gracias por visitarnos, hasta pronto!!");
 
-if (seleccion == "si") {
-  alert("En sección Productos podrás encontrar todo nuestro stock.");
-} else if (seleccion == "no") {
-  alert("gracias por visitarnos, hasta pronto!!");
-}
+

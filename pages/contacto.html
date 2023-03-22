@@ -1,100 +1,97 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=EB+Garamond:ital@1&family=Gabriela&family=Josefin+Sans:wght@100&family=Lobster+Two&display=swap" rel="stylesheet">
-    <title>Contacto</title>
-    
-    <script defer src="../js/menu.js"></script>
-    <script defer src="../js/contacto.js"></script>
-    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../css/style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=EB+Garamond:ital@1&family=Gabriela&family=Josefin+Sans:wght@100&family=Lobster+Two&display=swap" rel="stylesheet">
+<title>Contacto</title>
+<script defer src="../js/contacto.js"></script>
+<script defer src="../js/menu.js"></script>
+
+
 </head>
 <body class="body">
-  <header>
-    <h1 class="logo text-center">Yogui Shop</h1>
-  
-    <img class="iconCarrito" src="../assets/carrito-de-compras.png">
-         <button id="abrir" class="abrir-menu">&#9776</button>
-         
-          <nav id="nav" class="nav ">   
-            <button id="cerrar" class="cerrar-menu">X</button>   
-          <ul class="nav__barra d-flex list-unstyled justify-content-center align-items-center">
-            <li class="nav__item">
-              <a class="nav__link p-3" aria-current="page" href="../index.html">Home</a>
-         
-            </li>
-            <li class="nav__item">
-              <a class="nav__link p-3" href="productos.html">Productos</a>
-            </li>
-            <li class="nav__item">
-              <a class="nav__link p-3" href="contacto.html">Contacto</a>
-            </li>
-          </ul>
-      </div>
-    </div>
-    </nav>
-  </header>
-       <main class="form container-fluid" id="main">
-          <section class="row">
-          
-            <form class="d-grid justify-content-center align-content-center p-2 m-3">
-                <h2 class="text-white">Formulario de consulta</h2>
-                <div class="register">
-                    <label for="name">*Nombre:</label><input id="name" type="text" name="name" required />
-                </div>
-                <div class="register">
-                    <label for="lastName">*Apellido:</label><input id="lastName" type="text" name="lastName" required/>
-                </div>
-                <div class="register">
-                    <label for="age">Edad:</label><input id="age" type="number" name="age" requiered/>
-                </div>
-                <div class="register">
-                    <label for="email">*Correo:</label><input id="email" type="email" name="email"  requiered/>
-                </div>
-                <div class="register">
-                    <label for="adress">Dirección:</label><input id="adress" type="text" name="adress" requiered/>
+<header>
+<h1 class="logo text-center">Yogui Shop</h1>
 
-                </div>
-                <div>
-                    <label form="type">Qué producto te gustó?:</label>
-                    <select id="type" name="tipo">
-                        <option value="rodillo">Rodillo de Masajes</option>
-                        <option value="esterilla">Esterilla Acolchada</option>
-                        <option value="mat">Mat</option>
-                        <option value="bloque">Bloque</option>
-                        <option value="almohada">Almohada Lumbra</option>
-                        <option value="kit">Kit Relax</option>
-                        <option value="medias">Medias Antideslizantes</option>
-                        <option value="bolso">Bolso de Yoga</option>
-                    </select>
-                </div>
-                <div class="register">
-                    <textarea name="comentario" id="query" rows="10" cols="90"
-                        placeholder="Envianos tu consulta:"></textarea>
-                </div>
+<img class="iconCarrito" src="../assets/carrito-de-compras.png">
+     <button id="abrir" class="abrir-menu">&#9776</button>
+     
+      <nav id="nav" class="nav ">   
+        <button id="cerrar" class="cerrar-menu">X</button>   
+      <ul class="nav__barra d-flex list-unstyled justify-content-center align-items-center">
+        <li class="nav__item">
+          <a class="nav__link p-3" aria-current="page" href="../index.html">Home</a>
+     
+        </li>
+        <li class="nav__item">
+          <a class="nav__link p-3" href="productos.html">Productos</a>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link p-3" href="contacto.html">Contacto</a>
+        </li>
+      </ul>
+  </div>
+</div>
+</nav>
+</header>
+   <main class="form container-fluid" id="main">
+      <section class="row">
+      
+        <form class="d-grid justify-content-center align-content-center p-2 m-3">
+            <h2 class="h3">Formulario de consulta</h2>
+            <div class="registro" id="usuario">
+              <label for="nombre">*Nombre:</label><input id="nombre" type="text" name="nombre" required/>
+            </div>
+              <div class="registro">
+                <label for="apellido">*Apellido:</label><input id="apellido" type="text" name="apellido" required/>
+            </div>
+            <div class="registro">
+                <label for="edad">Edad:</label><input id="edad" type="number" name="edad" requiered/>
+            </div>
+            <div class="registro">
+                <label for="email">*Correo:</label><input id="email" type="email" name="email"  requiered/>
+            </div>
+            <div class="registro">
+                <label for="direccion">Dirección:</label><input id="direccion" type="text" name="direccion" requiered/>
 
-                <div class="register">
-                    <label id="captcha" for="captcha"> </label><input id="captchaInput" type="number" name="captcha"
-                        placeholder="Ingrese captcha" value="" />
-                </div>
+            </div>
+            <div>
+                <label form="type">Qué producto te gustó?:</label>
+                <select id="tipo" name="tipo">
+                    <option value="rodillo">Rodillo de Masajes</option>
+                    <option value="esterilla">Esterilla Acolchada</option>
+                    <option value="mat">Mat</option>
+                    <option value="bloque">Bloque</option>
+                    <option value="almohada">Almohada Lumbra</option>
+                    <option value="kit">Kit Relax</option>
+                    <option value="medias">Medias Antideslizantes</option>
+                    <option value="bolso">Bolso de Yoga</option>
+                </select>
+            </div>
+            <div class="registro">
+                <textarea name="comentario" id="comentario" rows="10" cols="90"
+                    placeholder="Envianos tu consulta:"></textarea>
+            </div>
 
-                <div class="registerSend">
+            <div class="registro">
+                <label id="captcha" for="captcha"> </label><input id="captchaInput" type="number" name="captcha"
+                    placeholder="Ingrese captcha" value="" />
+            </div>
 
-                    <p><span id="msg"></span></p>
-                    <button id="send">Enviar</button>
-                    <p><span id="msgSend"></span></p>
+            <div class="enviarRegistro">
 
-                </div>
-            </form>
-          </section>  
-          <section>
-            <h2 id="politicaCambio">Política de Cambio. ¿Se puede cambiar un producto adquirido?</h2>
+                <p class="h5 text-white"><span id="msg"></span></p>
+                <button id="send">Enviar</button>
+                <p class="h5 text-white"><span id="enviaMensaje"></span></p>
+
+            </div>
+        </form>
+      </section>  
+      <section>
+        <h2 id="politicaCambio">Política de Cambio. ¿Se puede cambiar un producto adquirido?</h2>
 <p class="cambios">Si, dentro de los 10 días corridos desde recibido el producto. Para el cambio se debe presentar la factura de compra. Para proceder con el cambio de unidad será necesario que el producto se encuentre con el embalaje de fábrica intacto, en las mismas condiciones en las que se entregó.
 
 Una vez efectuada la devolución del producto el cliente se podrá optar por el cambio por otro producto. El cambio del producto se realizará dentro de las 48 horas hábiles posteriores a la solicitud.
@@ -105,52 +102,52 @@ En el caso de querer cambiar el producto porque el cliente ha cambiado de opini�
 
 En el caso de devoluciones por falla o daño, constatado por un service oficial en el plazo de 10 días corridos de recibido el producto y que no exista disponibilidad del mismo producto y no pueda garantizarse 
 su reposición en un lapso inferior a treinta (30) días corridos, el cliente acepta que le sean reintegrados los importes abonados por el mismo medio de pago en que fue realizada la compra, sin ningún tipo de compensación adicional.</p>
-  <br>        
+<br>        
 </section>
-        </main>
-        
-        <footer class="row">
-          <div class="footer d-flex flex-wrap justify-content-around align-content-center mt-0">
-            <div>
-            <h3 class="h4 text-center mt-4">NAVEGACION</h3>
-            <ul class="d-flex flex-column justify-content-center align-items-center"style="list-style-type:none;">
-              <li><a class="a" href="../index.html">Inicio</a></li>
-              <li><a class="a" href="productos.html">Productos</a></li>
-              <li><a class="a" href="contacto.html">Contacto</a></li>
-              <li><a class="a" href="#politicaCambio">Política de Cambio</a></li>
-            </ul>
-            </div>
-            <div>
-            <h3 class="h4 text-center mt-4">MEDIOS DE PAGO</h3>
-            <ul class=" d-flex flex-column justify-content-center align-items-center" style="list-style-type:none;">
-              <li class="tarjeta">Visa</li>
-              <li class="tarjeta">Mastercard</li>
-              <li class="tarjeta">AmericanExpress</li>
-              <li class="tarjeta">Naranja</li>
-              <li class="tarjeta">Mercado Pago</li>
-              <li class="tarjeta">Rapipago</li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="h4 text-center mt-4">CONTACTANOS</h3>
+    </main>
     
-              <img src="../assets/telephone.svg" alt="icono telefono">
-              <span>2494697747</span>
-              <br>
-              <img src="../assets/envelope-at.svg" alt="icono email">
-              <a class="a" href="mailto:yogashop@gmail.com"
-              title="Mandanos un email">Mandanos un email</a>
-            </div>
-            <div>
-              <br>
-            <h3 class="h4 text-center mt-0">REDES SOCIALES</h3>
-              <img class="red m-4"src="../assets/instagram (3).svg" alt="icono instagram">
-              <img class="red m-3"src="../assets/facebook (2).svg" alt="icono facebook">
-              <img class="red m-3"src="../assets/whatsapp (7).svg" alt="icono whatsapp">
-          </div>
-          </div>
-        </footer>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-        
-    </body>
-    </html>      
+    <footer class="row">
+      <div class="footer d-flex flex-wrap justify-content-around align-content-center mt-0">
+        <div>
+        <h3 class="h4 text-center">NAVEGACION</h3>
+        <ul class="d-flex flex-column justify-content-center align-items-center"style="list-style-type:none;">
+          <li><a class="a" href="../index.html">Inicio</a></li>
+          <li><a class="a" href="productos.html">Productos</a></li>
+          <li><a class="a" href="contacto.html">Contacto</a></li>
+          <li><a class="a" href="#politicaCambio">Política de Cambio</a></li>
+        </ul>
+        </div>
+        <div>
+        <h3 class="h4 text-center">MEDIOS DE PAGO</h3>
+        <ul class=" d-flex flex-column justify-content-center align-items-center" style="list-style-type:none;">
+          <li class="tarjeta">Visa</li>
+          <li class="tarjeta">Mastercard</li>
+          <li class="tarjeta">AmericanExpress</li>
+          <li class="tarjeta">Naranja</li>
+          <li class="tarjeta">Mercadp Pago</li>
+          <li class="tarjeta">Rapipago</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="h4 text-center">CONTACTANOS</h3>
+
+          <img src="../assets/telephone.svg" alt="icono telefono">
+          <span>2494697747</span>
+          <br>
+          <img src="../assets/envelope-at.svg" alt="icono email">
+          <a class="a" href="mailto:yogashop@gmail.com"
+          title="Mandanos un email">Mandanos un email</a>
+        </div>
+        <div>
+          <br>
+        <h3 class="h4 text-center">REDES SOCIALES</h3>
+          <img class="red m-4"src="../assets/instagram (3).svg" alt="icono instagram">
+          <img class="red m-3"src="../assets/facebook (2).svg" alt="icono facebook">
+          <img class="red m-3"src="../assets/whatsapp (7).svg" alt="icono whatsapp">
+           </div>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    
+</body>
+</html>      
