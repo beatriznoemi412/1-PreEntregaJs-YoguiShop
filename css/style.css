@@ -14,7 +14,7 @@ header {
 .iconCarrito {
   width: 50px;
   height: 50px;
-  margin-left: 20px;
+  margin-left: 35px;
 }
 /*CARRITO CANTIDAD DE PRODUCTOS QUE VAN COMPRANDO*/
 .carritoCantidad{
@@ -24,7 +24,7 @@ header {
   font-size: .9rem;
   padding: 4px;
   top:80px;
-  left: 60px;
+  left: 75px;
   position: absolute;
   display: none;
 }
@@ -68,6 +68,7 @@ header {
 main {
   background-color: rgb(253, 244, 244);
   width: 100vw;
+  margin-left: 15px!important;
 }
 carousel-slide{
   display: flex!important;
