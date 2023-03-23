@@ -24,8 +24,8 @@ function verificarFormulario(e) {
 
   let error = 0; 
   // obtengo los elementos del formulario input llamados por id
-let usuario = document.getElementById("usuario"),
-    nombre = document.getElementById("nombre"),
+
+let nombre = document.getElementById("nombre"),
     apellido = document.getElementById("apellido"),
     email = document.getElementById("email"),
     comentario = document.getElementById("comentario"),
@@ -44,7 +44,7 @@ let usuario = document.getElementById("usuario"),
   nombre.value === ""? (
     nombre.classList.add("error"),
     error = 1) :  nombre.classList.remove("error");
- 
+
   apellido.value == ""? (
     apellido.classList.add("error"),
     error = 1) : apellido.classList.remove("error");
@@ -92,14 +92,8 @@ let usuario = document.getElementById("usuario"),
     generarCaptcha();
   }
 
-  //GUARDO LOS DATOS DEL USUARIO Y SI NO HAY NINGUNO SE CREA VECTOR VACÍO
-  let usuarioStorage = localStorage.getItem("email", email.value)
-  ? JSON.parse(localStorage.getItem("email", email.value))
-  : [];
+} 
 
-  localStorage.setItem("email", JSON.stringify(usuarioStorage));
-
-/*
 //Agrega un evento change a cada elemento form para que se guarde en localStorage cada vez que el usuario realice algún cambio.
 nombre.addEventListener("change", guardarEnLocalStorage);
 email.addEventListener("change", guardarEnLocalStorage);
@@ -110,11 +104,12 @@ function guardarEnLocalStorage() {
   localStorage.setItem('email', email.value);
   localStorage.setItem('comentario', comentario.value);
 }
+//función cargarDesdeLocalStorage() se llama cuando se carga la página y utiliza el método localStorage.getItem()
+//para recuperar los valores del almacenamiento local
 window.addEventListener('load', cargarDesdeLocalStorage);
 
 function cargarDesdeLocalStorage() {
   nombre.value = localStorage.getItem('nombre') || '';
   email.value = localStorage.getItem('email') || '';
   comentario.value = localStorage.getItem('comentario') || '';
-}*/
 }

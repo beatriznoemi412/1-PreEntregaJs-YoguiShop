@@ -69,9 +69,15 @@ main {
   background-color: rgb(253, 244, 244);
   width: 100vw;
 }
+carousel-slide{
+  display: flex!important;
+  justify-content: center!important;
+  align-content: center!important;
+  object-fit: cover!important;
+}
 .carousel {
   height: 100vh !important;
-  width: 100vw !important;
+  width: 100% !important;
 }
 .carousel-item {
   height: 100vh !important;
@@ -79,7 +85,8 @@ main {
 }
 .img_yoga {
   height: 100vh !important;
-  width: 100vw !important;
+  width: 100% !important;
+ 
 }
 .item1 {
   position: relative;
@@ -711,17 +718,17 @@ textarea {
     font-size: 1.6rem !important;
   }
   /*MAIN*/
-  .carousel {
-    height: 90vh !important;
-    width: 80vw !important;
+ .carousel {
+    height: 100vh !important;
+    width:100vw !important;
   }
   .carousel-item {
-    height: 80vh !important;
-    width: 80vw !important;
+    height: 100vh !important;
+    width: 100vw !important;
   }
   .img_yoga {
-    height: 80vh;
-    width: 70vw;
+    height: 100vh!important;
+    width:100vw!important;
   }
   .mensaje {
     top: 37%;
@@ -761,6 +768,24 @@ textarea {
     font-size: 1.2rem !important;
   }
   /*MAIN*/
+  carousel-slide{
+    display: flex!important;
+    justify-content: center!important;
+    align-items: center!important;
+    
+  }
+  .carousel {
+    height: 100vh !important;
+    width: 100vw !important;
+  }
+  .carousel-item {
+    height: 100vh !important;
+    width: 100vw !important;
+  }
+  .img_yoga {
+    height: 100vh;
+    width: 100vw;
+  }
   .mensaje {
     top: 37%;
     left: 70%;
