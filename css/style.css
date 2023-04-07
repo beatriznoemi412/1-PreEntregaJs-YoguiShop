@@ -242,7 +242,7 @@ h3 {
   border-radius: .4em;
 
 }
-.comprar{
+.productoAgregar{
   width: 150px!important;
   border-radius: .5em;
   font-size: 1.3rem;
@@ -250,56 +250,15 @@ h3 {
   border: none;
   height: 40px;
   width: 110px!important;
-}
-span {
-  font-family: "EB Garamond", serif;
-  border-radius: 4rem;
-  text-align: center;
-}
-.scale-in-left {
-  -webkit-animation: scale-in-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-    both;
-  animation: scale-in-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  cursor: pointer;
 }
 
-@-webkit-keyframes scale-in-left {
-  0% {
-    -webkit-transform: scale(0);
-    transform: scale(0);
-    -webkit-transform-origin: 0% 50%;
-    transform-origin: 0% 50%;
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-transform-origin: 0% 50%;
-    transform-origin: 0% 50%;
-    opacity: 1;
-  }
-}
-@keyframes scale-in-left {
-  0% {
-    -webkit-transform: scale(0);
-    transform: scale(0);
-    -webkit-transform-origin: 0% 50%;
-    transform-origin: 0% 50%;
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-transform-origin: 0% 50%;
-    transform-origin: 0% 50%;
-    opacity: 1;
-  }
-}
 /*VENTANA CONTENT*/
 
 .ventanaContainer{
   width: 70%;
   margin: 0 10%;
-  max-height: 60vh;
+  max-height: 70vh;
   color:#fff;
   background-color: #121212d1;
   display: flex;
@@ -340,17 +299,195 @@ span {
   height: 120px;
   width: 120px;
 }
-.total{
-  font-size: 25px;
-  padding: 20px;
+.totalCompra{
+  font-size: 1.3rem;
   text-align: center;
-  padding-top: 20px;
+  padding-top: 13px;
 }
 /*BOTON ELIMINAR PRODUCTOS*/
+#verCarrito,
 .productoEliminado{
   cursor: pointer;
 }
-
+#btnVaciar{
+  height: 40px;
+  border-radius: .8em;
+  background: none;
+  color: white;
+  border: 2px white solid;
+}
+.compra{
+  font-size: 1.2rem;
+  color: white;
+  background: none;
+  cursor: pointer;
+  border-radius: .7em;
+  border: 2px white solid;
+}
+/*COMPRA.HTML*/
+/*Cobrar con Tarjeta de Crédito*/
+.creditCard{
+  font-family: "Poppins", sans-serif;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  }
+  .credit{
+    min-height: 100vh;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    padding-bottom: 60px;
+    border-radius: 5px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 1);
+    padding: 20px;
+    width: 600px;
+    padding-top: 160px;
+    margin-left: 350px;
+  }
+  .credit form .inputBox{
+    margin-top: 20px;
+  }
+  .credit form .inputBox span{
+    display: block;
+    color:#999;
+    padding-bottom:5px;
+  }
+  .credit form .inputBox input,
+  .credit form .inputBox select{
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,.3);
+    color: #444;
+  }
+  .credit form .flexbox{
+    display: flex;
+    gap: 15px;
+  }
+  .credit form .flexbox .inputBox{
+    flex: 1 1 150px;
+  }
+  .credit form .submit-btn{
+    width: 100%;
+    background: linear-gradient(45deg, aquamarine, rgb(0, 128, 83) );
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 20px;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .2s linear;
+    break-before: 5px;
+  }
+  .credit form .submit-btn:hover{
+    letter-spacing: 2px;
+    opacity: .8;
+  }
+  .credit .creditContainer{
+    margin-bottom: 10px;
+    position: relative;
+    height: 250px;
+    width: 400px;
+  }
+  .credit .creditContainer .front{
+    position: relative;
+    z-index: 1;
+    margin: 25px;
+    height: 87%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(45deg, aquamarine,  rgb(0, 128, 83));
+    border-radius: 5px;
+    backface-visibility: hidden;
+    box-shadow: 0 15px 25px rgba(0,0,0,.2);
+    padding: 20px;
+ 
+  }
+  .credit .creditContainer .front .image{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+  }
+  .credit .creditContainer .front .image img{
+    height: 50px;
+  
+  }
+  
+  .credit .creditContainer .front .card-number-box{
+    padding: 30px 0;
+    font-size: 22px;
+    color: #fff;
+    }
+  .credit .creditContainer .front .flexbox{
+    display: flex;
+  }
+  
+  .credit .creditContainer .front .flexbox .box:nth-child(1){
+   margin-right: auto;
+  }
+  
+  .credit .creditContainer .front .flexbox .box{
+    font-size: 15px;
+    color: #fff;
+  }
+  .credit .creditContainer .back{
+    position: absolute;
+    top: -150px;
+    left: 0;
+    height: 85%;
+    width: 100%;
+    background: linear-gradient(45deg, aquamarine,  rgb(0, 128, 83));
+    border-radius: 5px;
+    padding: 20px 0;
+    text-align: right;
+    backface-visibility: hidden;
+    box-shadow: 0 15px 25px rgba(0,0,0,.2);
+  }
+  .credit .creditContainer .back .stripe{
+    background: #000;
+    width: 100%;
+    margin: 10px 0;
+    height: 50px;
+  }
+  .credit .creditContainer .back .box{
+    display: flex;
+    padding: 0 20px;
+  
+  }
+  .credit .creditContainer .back .box span{
+    color: black;
+    font-size: 15px;
+   
+  }
+  .credit .creditContainer .back .box .cvv-box{
+    height: 50px;
+    padding: 10px;
+    margin-top: 20px;
+    color: white;
+    background-color: #aba7a7;
+    border-radius: 5px;
+    width: 25%;
+  }
+  .credit .creditContainer .back .box img{
+    margin-top: 90px;
+    margin-left: -70px;
+    height: 50px;
+  }
+  .labelVence,
+  .labelTit{
+    color: rgb(185, 180, 180);
+  }
+  .submit{
+    border-radius: 1em;
+    border: solid 1px rgb(152, 147, 147);
+    padding: 7px;
+  }
 /*CONTACTO*/
 
 label {
