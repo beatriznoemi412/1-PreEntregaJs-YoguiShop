@@ -1,18 +1,18 @@
 const verCarrito = document.getElementById("verCarrito");
 const ventanaContainer = document.getElementById("ventanaContainer");
 const carritoCantidad = document.getElementById("carritoCantidad");
-carrito=[];
+
+carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 verCarrito.addEventListener("click", mostrarCarrito);
 
 // VENTANA DE COMPRA
 function mostrarCarrito() {
   ventanaContainer.innerHTML = "";
   ventanaContainer.style.display = "flex";
- //TOTAL COMPRA
-  const total = carrito.reduce(
-    (acc, { precio, cantidad }) => acc + precio * 1.21 * cantidad,
-    0
-  );
+  //TOTAL COMPRA
+  const total = carrito
+    .reduce((acc, { precio, cantidad }) => acc + precio * 1.21 * cantidad, 0)
+    .toFixed(2);
 
   const ventanaHeader = document.createElement("div");
   ventanaHeader.className = "ventana-header";
@@ -25,7 +25,7 @@ function mostrarCarrito() {
 
   contadorCarrito.innerText = carrito.length;
 
-//VACIAR CARRITO
+  //VACIAR CARRITO
   const btnVaciar = document.getElementById("btnVaciar");
   btnVaciar.addEventListener("click", vaciarCarrito);
 
@@ -38,80 +38,89 @@ function mostrarCarrito() {
     ventanaContainer.style.display = "none";
   });
   ventanaHeader.append(ventanaButton);
-
+ //BODY MODAL
   carrito.forEach((item) => {
     const precioConIVA = item.precio * 1.21;
-    let contenidoCarrito = document.createElement("div");
+    const contenidoCarrito = document.createElement("div");
     contenidoCarrito.className = "ventanaContenedora";
     contenidoCarrito.innerHTML = `
       <img src="${item.imagen}">
       <h3 class="text-light">${item.nombre}</h3>
       <p>${precioConIVA}$</p>
+      <span class="restar"> - </span>
       <p>Cantidad: ${item.cantidad}</p>
+      <span class="sumar"> + </span>
       <p>Subtotal: ${item.cantidad * precioConIVA}</p>
-      <button class="productoEliminado" id="btnEliminarProducto${item.id}">❌<button>
+      <button class="productoEliminado" id="btnEliminarProducto${
+        item.id
+      }">❌<button>
       
       `;
-      ventanaContainer.appendChild(contenidoCarrito);
+    ventanaContainer.appendChild(contenidoCarrito);
+    
+    const restar = contenidoCarrito.querySelector(".restar");//de la funcion contenidoCarrito traigo la clase restar, no recorro todo el DOM como con document
+    restar.addEventListener("click", ()=>{
+      item.cantidad--;
+    })
+    mostrarCarrito();
     //BOTON ELIMINAR PRODUCTO ELEGIDO
     const botonElimina = document.getElementById(
-      `btnEliminarProducto${item.id}`);
-  
+      `btnEliminarProducto${item.id}`
+    );
+
     botonElimina.addEventListener("click", () => {
       eliminarProducto(item.id);
     });
-    });
-    const DateTime = luxon.DateTime;
-      const ahora = DateTime.local();
-      ahora.toLocaleString(DateTime.DATE_HUGE);
-    
-      ventanaContainer.append(ahora);
+  });
+  //libreria que informa fecha y hora al usuario cuando compra
+  const DateTime = luxon.DateTime;
+  const ahora = DateTime.local();
+  ahora.toLocaleString(DateTime.DATE_HUGE);
 
- //BOTON COMPRAR
-     const compraRealizada = document.createElement("button");
+  ventanaContainer.append(ahora);
+
+  //BOTON COMPRAR
+  const compraRealizada = document.createElement("button");
   compraRealizada.className = "compra";
   compraRealizada.innerHTML = `comprar`;
   ventanaContainer.append(compraRealizada);
   saveLocalStorage();
 
-  compraRealizada.addEventListener("click", (comprarCarrito) => {
+  compraRealizada.addEventListener("click", (compraEfectuada) => {
     const enlace = document.querySelector("a[href='compra.html']");
     window.location.assign(enlace.href);
-   
+    compraEfectuada.lenght = 0;
   });
-  saveLocalStorage();
-}
-function comprarCarrito(){
-  carrito.length = 0;
 }
 //ELIMINA PRODUCTO ELEGIDO
 function eliminarProducto(itemId) {
   const item = carrito.find((item) => item.id === itemId);
   const indice = carrito.indexOf(item);
   carrito.splice(indice, 1);
- 
+
   contadorCarrito(); //ME DICE LA EXTENSIÓN DEL CARRITO, EN ESTE CASO SE RESTA PRODUCTO ELEGIDO
   mostrarCarrito();
-  saveLocalStorage();//SE ACTUALIZA EL LOCAL STORAGE  CUANDO ELIMINAMOS UN PROD
+  saveLocalStorage(); //SE ACTUALIZA EL LOCAL STORAGE  CUANDO ELIMINAMOS UN PROD
 }
 //OVALO DE COLOR QUE APARECE EN EL CARRITO, SOLO CUANDO EL USUARIO COMPRA, CONTANDO LOS PRODUCTOS ELEGIDOS, NO EL TOTA DE ELLOS.
 const contadorCarrito = () => {
-    carritoCantidad.style.display = "block";
-    carritoCantidad.innerText = carrito.length;
+  carritoCantidad.style.display = "block";
+  carritoCantidad.innerText = carrito.length;
 
-    const carritoLength = carrito.length;
+  const carritoLength = carrito.length;
   localStorage.setItem("carritoLength", JSON.stringify(carritoLength));
-
   carritoCantidad.innerText = JSON.parse(localStorage.getItem("carritoLength"));
-}; 
-    contadorCarrito();
-    
-    function vaciarCarrito() { 
-    Swal.fire({
+};
+contadorCarrito();
+
+function vaciarCarrito() {
+  Swal.fire({
     title: "¿Estás seguro?",
     icon: "question",
     html: `Se van a borrar ${carrito.reduce(
-      (acc, producto) => acc + producto.cantidad, 0)} productos.`,
+      (acc, producto) => acc + producto.cantidad,
+      0
+    )} productos.`,
     showCancelButton: true,
     focusConfirm: false,
     confirmButtonText: "Sí",
@@ -123,18 +132,14 @@ const contadorCarrito = () => {
       mostrarProductos();
       contadorCarrito();
 
-        Swal.fire({
+      Swal.fire({
         title: "Carrito vaciado",
         icon: "success",
         confirmButtonText: "Aceptar",
-      
       });
       setTimeout(function () {
         location.reload();
       }, 2000);
     }
   });
-      }
-      
-  
-  
+}

@@ -287,6 +287,9 @@ h3 {
 .ventana-header-button{
   cursor: pointer;
 }
+.restar, .sumar{
+  cursor: pointer;
+}
 .ventanaContainer > .ventanaContenedora{
   display: flex;
   flex-direction: row;
@@ -489,7 +492,9 @@ h3 {
     padding: 7px;
   }
 /*CONTACTO*/
-
+#main{
+  width: 100vw;
+}
 label {
   color: white;
   width: 200px;
