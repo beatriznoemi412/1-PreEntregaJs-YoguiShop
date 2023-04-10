@@ -16,14 +16,14 @@ numeroTarjeta.addEventListener("input", () => {
 });
 
 nombreTarjeta.addEventListener("input", () => {
-  cardName.innerText = (isNaN(nombreTarjeta.value)) ? nombreTarjeta.value : "JuanPerez";
+  cardName.innerText = (isNaN(nombreTarjeta.value)) ? nombreTarjeta.value : "Juan Perez";
 });
 
 mes.addEventListener("input", () => {
   cardMonth.innerText = (!isNaN(mes.value)) ? mes.value : "00";
 });
 anio.addEventListener("input", () => {
-  cardYear.innerText = (!isNaN(anio.value)) ? cardYear.value : "00";
+  cardYear.innerText = (!isNaN(anio.value)) ? anio.value : "00";
 });
 cvv.addEventListener("input", () => {
   spanCvv.innerText = (!isNaN(cvv.value)) ? cvv.value : "000";
@@ -35,7 +35,8 @@ function validarInput(input, mensajeError,tipoValidacion) {
   
  
   if (tipoValidacion === "letras") {
-      regex = /^[a-zA-Z]+$/;
+      regex = /^[a-zA-Z'-]+\s?[a-zA-Z'-]+$/;
+
     } else if (tipoValidacion === "numeros") {
       regex = /^[0-9]+$/;
     } else {

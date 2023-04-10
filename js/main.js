@@ -77,3 +77,4 @@ const saveLocalStorage = () => {
 };
 //getItem
 JSON.parse(localStorage.getItem("carrito"));
+
