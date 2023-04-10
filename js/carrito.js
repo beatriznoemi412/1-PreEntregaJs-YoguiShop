@@ -4,7 +4,6 @@ const carritoCantidad = document.getElementById("carritoCantidad");
 
 carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 verCarrito.addEventListener("click", mostrarCarrito);
-
 // VENTANA DE COMPRA
 function mostrarCarrito() {
   ventanaContainer.innerHTML = "";
@@ -38,7 +37,7 @@ function mostrarCarrito() {
     ventanaContainer.style.display = "none";
   });
   ventanaHeader.append(ventanaButton);
- //BODY MODAL
+  //BODY MODAL
   carrito.forEach((item) => {
     const precioConIVA = item.precio * 1.21;
     const contenidoCarrito = document.createElement("div");
@@ -57,12 +56,21 @@ function mostrarCarrito() {
       
       `;
     ventanaContainer.appendChild(contenidoCarrito);
-    
-    const restar = contenidoCarrito.querySelector(".restar");//de la funcion contenidoCarrito traigo la clase restar, no recorro todo el DOM como con document
-    restar.addEventListener("click", ()=>{
-      item.cantidad--;
-    })
-    mostrarCarrito();
+
+    let restar = contenidoCarrito.querySelector(".restar");
+    restar.addEventListener("click", () => {
+      if (item.cantidad !== 1) {
+        item.cantidad--;
+        mostrarCarrito();
+      }
+    });
+   
+    let sumar = contenidoCarrito.querySelector(".sumar"); //de la funcion contenidoCarrito traigo la clase restar, no recorro todo el DOM como con document
+    sumar.addEventListener("click", () => {
+      item.cantidad++;
+      mostrarCarrito();
+    });
+
     //BOTON ELIMINAR PRODUCTO ELEGIDO
     const botonElimina = document.getElementById(
       `btnEliminarProducto${item.id}`
@@ -84,14 +92,18 @@ function mostrarCarrito() {
   compraRealizada.className = "compra";
   compraRealizada.innerHTML = `comprar`;
   ventanaContainer.append(compraRealizada);
+
   saveLocalStorage();
 
-  compraRealizada.addEventListener("click", (compraEfectuada) => {
-    const enlace = document.querySelector("a[href='compra.html']");
+  compraRealizada.addEventListener("click", () => {
+    const enlace = document.querySelector("a[href='compra.html']"); //se redirige la página a la URL "compra.html"
     window.location.assign(enlace.href);
-    compraEfectuada.lenght = 0;
+    
+  
   });
 }
+    carrito = [];
+ 
 //ELIMINA PRODUCTO ELEGIDO
 function eliminarProducto(itemId) {
   const item = carrito.find((item) => item.id === itemId);

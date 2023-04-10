@@ -12,8 +12,10 @@ const cvv = document.getElementById("codigoSeguridad");
 const submit = document.getElementById("submit");
 const formulario = document.getElementById("formulario");
 
+
 function validarCliente(e) {
   e.preventDefault();
+
   try {
     if (
       !numeroTarjeta.value ||
@@ -62,7 +64,7 @@ function validarCliente(e) {
         spanCvv.innerText = "000";
       }
     });
-   
+  
     // Actualiza la información de la tarjeta de crédito en localStorage
 const creditCardInfo = {
   numeroTarjeta: numeroTarjeta.value,
@@ -121,3 +123,4 @@ nombreTarjeta.value = creditCardInfo.nombreTarjeta;
 // Update the credit card information in localStorage
 localStorage.setItem("creditCardInfo", JSON.stringify(creditCardInfo));
 }
+formulario.reset();
