@@ -10,59 +10,54 @@ const anio = document.getElementById("anio");
 const cvv = document.getElementById("codigoSeguridad");
 const submit = document.getElementById("submit");
 const formulario = document.getElementById("formulario");
-
+//Operador Condicional (ternario)
 numeroTarjeta.addEventListener("input", () => {
-  if (!isNaN(numeroTarjeta.value)) {
-    cardNumber.innerText = numeroTarjeta.value;
-  } else {
-    cardNumber.innerText = "0000 0000 0000 0000";
-  }
+  cardNumber.innerText = (!isNaN(numeroTarjeta.value)) ? numeroTarjeta.value : "0000 0000 0000 0000";
 });
 
 nombreTarjeta.addEventListener("input", () => {
-  if (nombreTarjeta.value) {
-    cardName.innerText = nombreTarjeta.value;
-  } else {
-    cardName.innerText = "Juan Perez";
-  }
+  cardName.innerText = (isNaN(nombreTarjeta.value)) ? nombreTarjeta.value : "JuanPerez";
 });
+
 mes.addEventListener("input", () => {
-  if (mes.value.length === 2) {
-    cardMonth.innerText = mes.value;
-  } else {
-    cardMonth.innerText = "00";
-  }
+  cardMonth.innerText = (!isNaN(mes.value)) ? mes.value : "00";
 });
 anio.addEventListener("input", () => {
-  if (anio.value.length === 2) {
-    cardYear.innerText = anio.value;
-  } else {
-    cardYear.innerText = "00";
-  }
+  cardYear.innerText = (!isNaN(anio.value)) ? cardYear.value : "00";
+});
+cvv.addEventListener("input", () => {
+  spanCvv.innerText = (!isNaN(cvv.value)) ? cvv.value : "000";
 });
 
-cvv.addEventListener("input", () => {
-  if (cvv.value.length === 3) {
-    spanCvv.innerText = cvv.value;
-  } else {
-    spanCvv.innerText = "000";
-  }
-});
 //Se evita repetir código y se simplifica la validación de los inputs. Además, si en el futuro se necesita agregar más validaciones, basta con modificar la función validarInput y llamarla para el nuevo input.
-function validarInput(input, mensajeError) {
-  if (!input.value) {
-    throw new Error(mensajeError);
+function validarInput(input, mensajeError,tipoValidacion) {
+  let regex;
+  
+ 
+  if (tipoValidacion === "letras") {
+      regex = /^[a-zA-Z]+$/;
+    } else if (tipoValidacion === "numeros") {
+      regex = /^[0-9]+$/;
+    } else {
+      throw new Error("Tipo de validación inválido.");
+    }
+  
+    if (input.value.match(regex)) {
+      return true;
+    } else {
+      throw new Error(mensajeError);
+    }
   }
-}
+
 function validarCliente(e) {
   e.preventDefault();
-
+ 
   try {
-    validarInput(numeroTarjeta, "Por favor, ingrese el número de tarjeta.");
-    validarInput(nombreTarjeta, "Por favor, ingrese el nombre del titular.");
-    validarInput(mes, "Por favor, seleccione el mes de vencimiento.");
-    validarInput(anio, "Por favor, seleccione el año de vencimiento.");
-    validarInput(cvv, "Por favor, ingrese el código de seguridad.");
+    validarInput(numeroTarjeta, "Por favor, ingrese el número de tarjeta.", "numeros");
+    validarInput(nombreTarjeta, "Por favor, ingrese el nombre del titular.", "letras");
+    validarInput(mes, "Por favor, seleccione el mes de vencimiento.", "numeros");
+    validarInput(anio, "Por favor, seleccione el año de vencimiento.", "numeros");
+    validarInput(cvv, "Por favor, ingrese el código de seguridad.","numeros");
 
     // Actualiza la información de la tarjeta de crédito en localStorage
     const creditCardInfo = {
@@ -118,6 +113,6 @@ formulario.addEventListener("reset", () => {
   resetCamposTarjetaCredito();
 });
 //Evento que valida form al hacer click en botón submit
-submit.addEventListener("click", validarCliente);
+ submit.addEventListener("click", validarCliente);
 
 formulario.reset();
