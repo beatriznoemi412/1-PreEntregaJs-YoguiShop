@@ -49,7 +49,7 @@ function mostrarCarrito() {
       <span class="restar"> - </span>
       <p>Cantidad: ${item.cantidad}</p>
       <span class="sumar"> + </span>
-      <p>Subtotal: ${item.cantidad * precioConIVA}</p>
+      <p>Subtotal: ${(item.cantidad * precioConIVA).toFixed(2)}</p>
       <button class="productoEliminado" id="btnEliminarProducto${
         item.id
       }">❌<button>

@@ -1,4 +1,3 @@
-
 const cardNumber = document.getElementById("cardNumber");
 const cardName = document.getElementById("cardName");
 const cardMonth = document.getElementById("cardMonth");
@@ -11,7 +10,6 @@ const anio = document.getElementById("anio");
 const cvv = document.getElementById("codigoSeguridad");
 const submit = document.getElementById("submit");
 const formulario = document.getElementById("formulario");
-
 
 function validarCliente(e) {
   e.preventDefault();
@@ -64,15 +62,21 @@ function validarCliente(e) {
         spanCvv.innerText = "000";
       }
     });
-  
-    // Actualiza la información de la tarjeta de crédito en localStorage
-const creditCardInfo = {
-  numeroTarjeta: numeroTarjeta.value,
-  nombreTarjeta: nombreTarjeta.value,
-};
-localStorage.setItem("creditCardInfo", JSON.stringify(creditCardInfo));
 
-    // mostrar un mensaje de confirmación utilizando Toastify
+    // Actualiza la información de la tarjeta de crédito en localStorage
+    const creditCardInfo = {
+      numeroTarjeta: numeroTarjeta.value,
+      nombreTarjeta: nombreTarjeta.value,
+    };
+    localStorage.setItem("creditCardInfo", JSON.stringify(creditCardInfo));
+   //Muestra informacion tarjeta cred. en local
+    if (localStorage.getItem("creditCardInfo")) {
+      const creditCardInfo = JSON.parse(localStorage.getItem("creditCardInfo"));
+      numeroTarjeta.value = creditCardInfo.numeroTarjeta;
+      nombreTarjeta.value = creditCardInfo.nombreTarjeta;
+    }
+    
+  // mostrar un mensaje de confirmación utilizando Toastify
     Toastify({
       text: `Compra realizada con éxito.\n¡Gracias por elegirnos!`,
       duration: 4000, // duración del mensaje en milisegundos
@@ -80,7 +84,7 @@ localStorage.setItem("creditCardInfo", JSON.stringify(creditCardInfo));
       close: true,
       gravity: "top",
       position: "center",
-      background: "#44C59B",
+      backgroundColor: "linear-gradient(to right, #44C59B , #29AB81)",
       stopOnFocus: true,
       click: function () {}, // Callback after click
     }).showToast();
@@ -93,14 +97,15 @@ localStorage.setItem("creditCardInfo", JSON.stringify(creditCardInfo));
       close: true,
       gravity: "top",
       position: "center",
-      background: "#44C59B",
+      backgroundColor: "linear-gradient(to right, #ff6a00 , #ee0979)",
       stopOnFocus: true,
       click: function () {},
     }).showToast();
   }
 }
+
 // resetea la tarjeta de credito cuando form es reseteado
-formulario.addEventListener("reset",() =>{
+formulario.addEventListener("reset", () => {
   resetCamposTarjetaCredito();
 });
 
@@ -112,15 +117,10 @@ function resetCamposTarjetaCredito() {
   spanCvv.innerText = "000";
 }
 
-
 submit.addEventListener("click", validarCliente);
- 
-if (localStorage.getItem("creditCardInfo")) {
-const creditCardInfo = JSON.parse(localStorage.getItem("creditCardInfo"));
-numeroTarjeta.value = creditCardInfo.numeroTarjeta;
-nombreTarjeta.value = creditCardInfo.nombreTarjeta;
 
-// Update the credit card information in localStorage
-localStorage.setItem("creditCardInfo", JSON.stringify(creditCardInfo));
-}
+
 formulario.reset();
+ 
+
+
