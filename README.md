@@ -1,4 +1,4 @@
-####Proyecto Final JS- YoguiShop  
+#Proyecto Final - YoguiShop  
 ####  En este  Proyecto  Final , que consta de un sitio  web  con  tres páginas  Html,  css   y sus correspondientes  js  para crear un sitio dinámico , he creado un carrito de compras.  Lo organicé con una presentación del sitio-index.html-,  una página con listtado de imágenes de productos de yoga con sus coprrespondientes precios.
 #### Para el ingreso al sitio y su carrito de compras creé un data.json  para uso de asincronia y promesas.
 
