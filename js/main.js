@@ -39,7 +39,7 @@ function mostrarProductos() {
     });
   });
 }
-// Llamar a la función mostrarProductos para que se ejecuten las operaciones
+// Llamo a la función mostrarProductos para que se ejecuten las operaciones
 
 function agregarAlCarrito(prodId) {
   const item = productos.find((prod) => prod.id === prodId);
