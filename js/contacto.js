@@ -82,14 +82,15 @@ class Formulario {
     this.captchaInput.classList.remove("error");
     
   }
-  guardarEnLocalStorage = ({ target }) => {
-    localStorage.setItem(target.id, target.value);
+  //desestructuración de objetos, se extrae la propiedad "target" de un objeto y crea una nueva variable "target".
+   guardarEnLocalStorage = ({ target }) => {// Se utiliza la propiedad "id" de "target" para identificar el elemento y la propiedad "value" para obtener el valor actual del elemento
+    localStorage.setItem(target.id, target.value);//se utiliza el método "setItem"  para almacenar el valor  en el  local del navegador, utilizando el "id" como clave y el "value" como valor. Esto permite recuperar y reutilizar los valores del elemento en futuras visitas a la página web.
   };
-
+  //función "cargarDesdeLocalStorage" utiliza el almacenamiento local del navegador para recordar los valores de los campos de form. 
   cargarDesdeLocalStorage = () => {
     this.camposObligatorios.forEach(campo => {
-      const input = document.querySelector(`#${campo}`);
-      input.value = localStorage.getItem(campo) ?? "";
+    const input = document.getElementById(campo);
+    input.value = localStorage.getItem(campo) ?? "";
     });
   };
 
@@ -110,9 +111,3 @@ class Formulario {
 const formulario = new Formulario();
 formulario.inicializar();
 formulario.resetearFormulario();
-/*
-El código crea una instancia de la clase Formulario y la asigna a la variable formulario. Luego llama a dos métodos de la instancia: inicializar() y resetearFormulario().
-
-inicializar() configura el formulario para que responda a eventos, como el envío del formulario y cambios en los campos del formulario. También genera un captcha inicial.
-
-resetearFormulario() restaura el formulario a su estado original, eliminando los mensajes de error . También se genera un nuevo captcha.  Estos dos métodos se encargan de inicializar y restablecer el formulario para que esté listo para su uso.*/

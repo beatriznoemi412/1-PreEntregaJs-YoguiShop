@@ -56,7 +56,7 @@ function mostrarCarrito() {
       
       `;
     ventanaContainer.appendChild(contenidoCarrito);
-
+ //el código dentro del evento verifica si el número de elementos del producto en el carrito es mayor que 1. Si es así, se reduce en 1 la cantidad de elementos del producto y se actualiza el carrito mostrando los cambios con la función mostrarCarrito().
     let restar = contenidoCarrito.querySelector(".restar");
     restar.addEventListener("click", () => {
       if (item.cantidad !== 1) {
@@ -65,12 +65,14 @@ function mostrarCarrito() {
       }
     });
    
-    let sumar = contenidoCarrito.querySelector(".sumar"); //de la funcion contenidoCarrito traigo la clase restar, no recorro todo el DOM como con document
+    let sumar = contenidoCarrito.querySelector(".sumar"); 
     sumar.addEventListener("click", () => {
-      item.cantidad++;
+      if (item.cantidad) {
+        item.cantidad++;
       mostrarCarrito();
+      }
     });
-
+  
     //BOTON ELIMINAR PRODUCTO ELEGIDO
     const botonElimina = document.getElementById(
       `btnEliminarProducto${item.id}`
@@ -80,6 +82,7 @@ function mostrarCarrito() {
       eliminarProducto(item.id);
     });
   });
+
   //libreria que informa fecha y hora al usuario cuando compra
   const DateTime = luxon.DateTime;
   const ahora = DateTime.local();
